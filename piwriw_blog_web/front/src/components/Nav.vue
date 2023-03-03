@@ -1,0 +1,122 @@
+<template>
+  <v-card class='mx-auto' max-width='320'>
+    <v-img :src='profileInfo.img'>
+      <v-card-title>
+        <v-col align='center'>
+          <v-avatar size='130' color='grey'>
+            <img :src='profileInfo.avatar' alt />
+          </v-avatar>
+          <div class='ma-4 white--text'>{{ profileInfo.name }}</div>
+        </v-col>
+      </v-card-title>
+      <v-divider></v-divider>
+    </v-img>
+
+    <v-card-title>About Me:</v-card-title>
+    <v-card-text>{{ profileInfo.desc }}</v-card-text>
+
+    <v-divider color='indigo'></v-divider>
+
+    <a
+      href='tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1062740129'
+      class='tooltipped'
+      target='_blank'
+      data-position='top'
+      data-delay='50'>
+      <v-list-item>
+        <v-list-item-icon class='ma-3'>
+          <v-icon color='blue darken-2'>{{ 'mdi-qqchat' }}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content class='grey--text'>{{ profileInfo.qq_chat }}</v-list-item-content>
+      </v-list-item>
+    </a>
+
+    <a
+      href='https://github.com/piwriw'
+      target='_blank'
+      data-tooltip='访问我的GitHub'
+      data-position='top'
+      data-delay='50'>
+      <v-list-item>
+        <v-list-item-icon class='ma-3'>
+          <v-icon color='blue darken-2'>{{ 'mdi-github' }}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content class='grey--text'>{{ profileInfo.github }}</v-list-item-content>
+      </v-list-item>
+    </a>
+
+
+    <v-list-item>
+      <v-list-item-icon class='ma-3'>
+        <v-icon color='blue darken-2'>{{ 'mdi-account-supervisor-circle' }}</v-icon>
+      </v-list-item-icon>
+      <v-list-item-content class='grey--text'>{{ profileInfo.public_account }}</v-list-item-content>
+    </v-list-item>
+    <!--      <v-list-item>-->
+    <!--        <v-list-item-icon class='ma-3'>-->
+    <!--          <v-icon color='green darken-2'>{{ 'mdi-wechat' }}</v-icon>-->
+    <!--        </v-list-item-icon>-->
+    <!--        <v-list-item-content class='grey&#45;&#45;text'>{{ profileInfo.wechat }}</v-list-item-content>-->
+    <!--      </v-list-item>-->
+
+    <!--      <v-list-item>-->
+    <!--        <v-list-item-icon class='ma-3'>-->
+    <!--          <v-icon color='orange darken-2'>{{ 'mdi-sina-weibo' }}</v-icon>-->
+    <!--        </v-list-item-icon>-->
+    <!--        <v-list-item-content class='grey&#45;&#45;text'>{{ profileInfo.weibo }}</v-list-item-content>-->
+    <!--      </v-list-item>-->
+
+    <!--      <v-list-item>-->
+    <!--        <v-list-item-icon class='ma-3'>-->
+    <!--          <v-icon color='primary'>{{ 'mdi-youtube' }}</v-icon>-->
+    <!--        </v-list-item-icon>-->
+    <!--        <v-list-item-content class='grey&#45;&#45;text'>{{ profileInfo.bili }}</v-list-item-content>-->
+    <!--      </v-list-item>-->
+
+    <a
+      href='mailto:piwriw@163.com'
+      class='tooltipped'
+      target='_blank'
+      data-tooltip='邮件联系我'
+      data-position='top'
+      data-delay='50'
+    >
+      <v-list-item>
+        <v-list-item-icon class='ma-3'>
+          <v-icon color='indigo'>{{ 'mdi-email' }}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content class='grey--text'>{{ profileInfo.email }}</v-list-item-content>
+      </v-list-item>
+    </a>
+
+  </v-card>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      profileInfo: {
+        id: 1
+      }
+    }
+  },
+  created() {
+    this.getProfileInfo()
+  },
+  methods: {
+    Jump(url) {
+      window.open(url, '_blank')
+    },
+    // 获取个人设置
+    async getProfileInfo() {
+      const { data: res } = await this.$http.get(
+        `profile/1`
+      )
+      this.profileInfo = res.data
+      this.$root.$emit('msg', res.data.icp_record)
+    }
+  }
+}
+</script>
+<style>
+</style>
