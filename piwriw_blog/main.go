@@ -9,9 +9,9 @@ import (
 	"piwriw_blog/setting"
 )
 
-// @title bluebell项目接口文档
+// @title Piwriw Blog项目接口文档
 // @version 1.0
-// @description Go web开发进阶项目实战课程bluebell
+// @description Go Piwriw Blog
 // @termsOfService http://swagger.io/terms/
 
 // @contact.name Piwriw
@@ -21,8 +21,6 @@ import (
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host 127.0.0.1:8080
-// @BasePath /api/v1
 func main() {
 	//if len(os.Args) < 2 {
 	//	fmt.Println("need config file.eg: new-ec-dashboard config.yaml")
